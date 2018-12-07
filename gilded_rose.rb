@@ -1,29 +1,5 @@
 require "forwardable"
-
-class Normal
-  attr_reader :item
-  extend Forwardable
-
-  def_delegator @item, :quality, :sell_in
-
-  def initialize(item)
-    @item = item
-  end
-
-  def update
-    item.quality = if item.quality == 0
-      0
-    elsif item.sell_in <= 0
-      item.quality - 2
-    else
-      item.quality - 1
-    end
-
-    item.sell_in -= 1
-
-    self
-  end
-end
+require "normal_item"
 
 class AgedBrie
   attr_reader :item
@@ -96,7 +72,7 @@ def update_quality(items)
   items.each do |item|
     case item.name
     when "NORMAL ITEM"
-      normal_item = Normal.new(item)
+      normal_item = NormalItem.new(item)
       normal_item.update
     when "Aged Brie"
       aged_brie = AgedBrie.new(item)
