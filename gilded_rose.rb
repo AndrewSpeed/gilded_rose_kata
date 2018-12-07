@@ -2,6 +2,8 @@ def update_quality(items)
   items.each do |item|
     if item.name == "NORMAL ITEM"
       normal_item(item)
+    elsif item.name == "Aged Brie"
+      aged_brie_item(item)
     else
 
       if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
@@ -53,6 +55,7 @@ end
 
 def normal_item(item)
   item.sell_in = item.sell_in - 1
+
   item.quality = if item.quality == 0
     item.quality = 0
   elsif item.sell_in <= 0
@@ -60,6 +63,19 @@ def normal_item(item)
   else
     item.quality - 1
   end
+
+  item
+end
+
+def aged_brie_item(item)
+  item.sell_in = item.sell_in - 1
+
+  if item.sell_in <= 0
+    item.quality = item.quality + 2
+  elsif item.sell_in > 0
+    item.quality = item.quality + 1
+  end
+  item.quality = 50 if item.quality >= 50
 
   item
 end
