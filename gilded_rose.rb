@@ -25,6 +25,30 @@ class Normal
   end
 end
 
+class AgedBrie
+  attr_reader :item
+  extend Forwardable
+
+  def_delegator @item, :quality, :sell_in
+
+  def initialize(item)
+    @item = item
+  end
+
+  def update
+    if @item.sell_in <= 0
+      @item.quality = @item.quality + 2
+    elsif @item.sell_in > 0
+      @item.quality = @item.quality + 1
+    end
+    @item.quality = 50 if @item.quality >= 50
+
+    @item.sell_in = @item.sell_in - 1
+
+    self
+  end
+end
+
 def update_quality(items)
   items.each do |item|
     case item.name
@@ -32,27 +56,14 @@ def update_quality(items)
       normal_item = Normal.new(item)
       normal_item.update
     when "Aged Brie"
-      aged_brie_item(item)
+      aged_brie = AgedBrie.new(item)
+      aged_brie.update
     when "Sulfuras, Hand of Ragnaros"
       sulfuras_item(item)
     when "Backstage passes to a TAFKAL80ETC concert"
       backstage_passes_item(item)
     end
   end
-end
-
-def normal_item(item)
-  item.quality = if item.quality == 0
-    item.quality = 0
-  elsif item.sell_in <= 0
-    item.quality - 2
-  else
-    item.quality - 1
-  end
-
-  item.sell_in = item.sell_in - 1
-
-  item
 end
 
 def aged_brie_item(item)
