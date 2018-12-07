@@ -123,6 +123,7 @@ RSpec.describe "#update_quality" do
 
       context "medium close to sell date (upper bound)" do
         let(:initial_sell_in) { 10 }
+
         it { expect(item.quality).to eq(initial_quality + 2) }
 
         context "at max quality" do

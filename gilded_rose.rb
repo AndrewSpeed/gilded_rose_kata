@@ -4,6 +4,10 @@ def update_quality(items)
       normal_item(item)
     elsif item.name == "Aged Brie"
       aged_brie_item(item)
+    elsif item.name == "Sulfuras, Hand of Ragnaros"
+      sulfuras_item(item)
+    elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+      backstage_passes_item(item)
     else
 
       if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
@@ -76,6 +80,26 @@ def aged_brie_item(item)
     item.quality = item.quality + 1
   end
   item.quality = 50 if item.quality >= 50
+
+  item
+end
+
+def sulfuras_item(item)
+end
+
+def backstage_passes_item(item)
+  if item.sell_in > 10
+    item.quality = item.quality + 1
+  elsif item.sell_in > 5
+    item.quality = item.quality + 2
+  elsif item.sell_in >= 1
+    item.quality = item.quality + 3
+  elsif item.sell_in <= 0
+    item.quality = 0
+  end
+  item.quality = 50 if item.quality > 50
+
+  item.sell_in = item.sell_in - 1
 
   item
 end
