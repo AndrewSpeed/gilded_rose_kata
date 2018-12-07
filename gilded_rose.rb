@@ -49,6 +49,21 @@ class AgedBrie
   end
 end
 
+class Sulfuras
+  attr_reader :item
+  extend Forwardable
+
+  def_delegator @item, :quality, :sell_in
+
+  def initialize(item)
+    @item = item
+  end
+
+  def update
+    self
+  end
+end
+
 def update_quality(items)
   items.each do |item|
     case item.name
@@ -59,14 +74,12 @@ def update_quality(items)
       aged_brie = AgedBrie.new(item)
       aged_brie.update
     when "Sulfuras, Hand of Ragnaros"
-      sulfuras_item(item)
+      sulfuras = Sulfuras.new(item)
+      sulfuras.update
     when "Backstage passes to a TAFKAL80ETC concert"
       backstage_passes_item(item)
     end
   end
-end
-
-def sulfuras_item(item)
 end
 
 def backstage_passes_item(item)
