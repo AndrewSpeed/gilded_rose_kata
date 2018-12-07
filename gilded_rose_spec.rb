@@ -5,12 +5,14 @@ RSpec.describe "#update_quality" do
   context "with a single" do
     let(:initial_sell_in) { 5 }
     let(:initial_quality) { 10 }
-    let(:item) { Item.new(name, initial_sell_in, initial_quality) }
-
-    before { update_quality([item]) }
+    let(:original_item) { Item.new(name, initial_sell_in, initial_quality) }
+    let(:updated_items) { update_quality([original_item]) }
+    let(:item) { updated_items.first }
 
     context "normal item" do
       let(:name) { "NORMAL ITEM" }
+
+      before { puts item }
 
       it { expect(item.sell_in).to eq(initial_sell_in - 1) }
 
@@ -240,14 +242,13 @@ RSpec.describe "#update_quality" do
   end
 
   context "with several objects" do
-    let(:items) {
+    let(:original_items) {
       [
         Item.new("NORMAL ITEM", 5, 10),
         Item.new("Aged Brie", 3, 10),
       ]
     }
-
-    before { update_quality(items) }
+    let(:items) { update_quality(original_items) }
 
     it { expect(items[0].quality).to eq(9) }
     it { expect(items[0].sell_in).to eq(4) }

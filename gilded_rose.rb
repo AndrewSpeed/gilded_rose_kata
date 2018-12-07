@@ -1,8 +1,36 @@
+require "forwardable"
+
+class Normal
+  attr_reader :item
+  extend Forwardable
+
+  def_delegator @item, :quality, :sell_in
+
+  def initialize(item)
+    @item = item
+  end
+
+  def update
+    @item.quality = if @item.quality == 0
+      0
+    elsif @item.sell_in <= 0
+      @item.quality - 2
+    else
+      @item.quality - 1
+    end
+
+    @item.sell_in -= 1
+
+    self
+  end
+end
+
 def update_quality(items)
   items.each do |item|
     case item.name
     when "NORMAL ITEM"
-      normal_item(item)
+      normal_item = Normal.new(item)
+      normal_item.update
     when "Aged Brie"
       aged_brie_item(item)
     when "Sulfuras, Hand of Ragnaros"
