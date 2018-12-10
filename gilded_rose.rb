@@ -7,21 +7,21 @@ require "sulfuras_item"
 
 def update_quality(items)
   items.each do |item|
-    item_wrapper = klass_for(item)
+    item_wrapper = klass_for(item.name).new(item)
     item_wrapper.update
   end
 end
 
-def klass_for(item)
-  case item.name
+def klass_for(item_name)
+  case item_name
     when "NORMAL ITEM"
-      NormalItem.new(item)
+      NormalItem
     when "Aged Brie"
-      AgedBrieItem.new(item)
+      AgedBrieItem
     when "Sulfuras, Hand of Ragnaros"
-      SulfurasItem.new(item)
+      SulfurasItem
     when "Backstage passes to a TAFKAL80ETC concert"
-      BackstagePassesItem.new(item)
+      BackstagePassesItem
   end
 end
 
