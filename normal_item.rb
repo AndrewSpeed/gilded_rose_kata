@@ -1,15 +1,9 @@
+# frozen_string_literal: true
+
 require "forwardable"
+require "item"
 
-class NormalItem
-  attr_reader :item
-  extend Forwardable
-
-  def_delegator @item, :quality, :sell_in
-
-  def initialize(item)
-    @item = item
-  end
-
+class NormalItem < Item
   def update
     item.quality = if item.quality == 0
       0

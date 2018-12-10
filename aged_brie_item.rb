@@ -1,15 +1,7 @@
 require "forwardable"
+require "item"
 
-class AgedBrieItem
-  attr_reader :item
-  extend Forwardable
-
-  def_delegator @item, :quality, :sell_in
-
-  def initialize(item)
-    @item = item
-  end
-
+class AgedBrieItem < Item
   def update
     if item.sell_in <= 0
       item.quality = item.quality + 2

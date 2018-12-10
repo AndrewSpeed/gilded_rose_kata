@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
 require "forwardable"
+require "item"
 
-class SulfurasItem
-  attr_reader :item
-  extend Forwardable
-
-  def_delegator @item, :quality, :sell_in
-
-  def initialize(item)
-    @item = item
-  end
-
+class SulfurasItem < Item
   def update
     self
   end

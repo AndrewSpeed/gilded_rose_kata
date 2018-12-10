@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
 require "forwardable"
+require "item"
 
-class BackstagePassesItem
-  attr_reader :item
-  extend Forwardable
-
-  def_delegator @item, :quality, :sell_in
-
-  def initialize(item)
-    @item = item
-  end
-
+class BackstagePassesItem < Item
   def update
     if item.sell_in > 10
       item.quality = item.quality + 1
