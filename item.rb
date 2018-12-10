@@ -9,4 +9,8 @@ class Item
   def initialize(item)
     @item = item
   end
+
+  def update
+    self
+  end
 end
