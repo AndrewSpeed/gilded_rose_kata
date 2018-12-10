@@ -1,24 +1,27 @@
-require "normal_item"
+# frozen_string_literal: true
+
 require "aged_brie_item"
-require "sulfuras_item"
 require "backstage_passes_item"
+require "normal_item"
+require "sulfuras_item"
 
 def update_quality(items)
   items.each do |item|
-    case item.name
+    item_wrapper = klass_for(item)
+    item_wrapper.update
+  end
+end
+
+def klass_for(item)
+  case item.name
     when "NORMAL ITEM"
-      normal_item = NormalItem.new(item)
-      normal_item.update
+      NormalItem.new(item)
     when "Aged Brie"
-      aged_brie = AgedBrieItem.new(item)
-      aged_brie.update
+      AgedBrieItem.new(item)
     when "Sulfuras, Hand of Ragnaros"
-      sulfuras = SulfurasItem.new(item)
-      sulfuras.update
+      SulfurasItem.new(item)
     when "Backstage passes to a TAFKAL80ETC concert"
-      backstage_passes = BackstagePassesItem.new(item)
-      backstage_passes.update
-    end
+      BackstagePassesItem.new(item)
   end
 end
 
