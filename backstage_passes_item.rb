@@ -1,23 +1,22 @@
 # frozen_string_literal: true
 
-require "forwardable"
 require "item"
 
 class BackstagePassesItem < Item
   def update
-    if item.sell_in > 10
-      item.quality = item.quality + 1
-    elsif item.sell_in > 5
-      item.quality = item.quality + 2
-    elsif item.sell_in >= 1
-      item.quality = item.quality + 3
-    elsif item.sell_in <= 0
-      item.quality = 0
+    if sell_in > 10
+      self.quality = quality + 1
+    elsif sell_in > 5
+      self.quality = quality + 2
+    elsif sell_in >= 1
+      self.quality = quality + 3
+    elsif sell_in <= 0
+      self.quality = 0
     end
-    item.quality = 50 if item.quality > 50
+    self.quality = 50 if quality > 50
 
-    item.sell_in = item.sell_in - 1
+    self.sell_in = sell_in - 1
 
-    item
+    self
   end
 end

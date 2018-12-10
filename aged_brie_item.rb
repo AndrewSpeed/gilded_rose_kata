@@ -1,16 +1,15 @@
-require "forwardable"
 require "item"
 
 class AgedBrieItem < Item
   def update
-    if item.sell_in <= 0
-      item.quality = item.quality + 2
-    elsif item.sell_in > 0
-      item.quality = item.quality + 1
+    if sell_in <= 0
+      self.quality += 2
+    elsif sell_in > 0
+      self.quality += 1
     end
-    item.quality = 50 if item.quality >= 50
+    self.quality = 50 if quality >= 50
 
-    item.sell_in = item.sell_in - 1
+    self.sell_in -= 1
 
     self
   end
