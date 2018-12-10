@@ -12,8 +12,6 @@ RSpec.describe "#update_quality" do
     context "normal item" do
       let(:name) { "NORMAL ITEM" }
 
-      before { puts item }
-
       it { expect(item.sell_in).to eq(initial_sell_in - 1) }
 
       context "before sell date" do

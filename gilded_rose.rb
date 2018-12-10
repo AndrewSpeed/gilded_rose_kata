@@ -1,35 +1,7 @@
-require "forwardable"
 require "normal_item"
 require "aged_brie_item"
 require "sulfuras_item"
-
-class BackstagePasses
-  attr_reader :item
-  extend Forwardable
-
-  def_delegator @item, :quality, :sell_in
-
-  def initialize(item)
-    @item = item
-  end
-
-  def update
-    if item.sell_in > 10
-      item.quality = item.quality + 1
-    elsif item.sell_in > 5
-      item.quality = item.quality + 2
-    elsif item.sell_in >= 1
-      item.quality = item.quality + 3
-    elsif item.sell_in <= 0
-      item.quality = 0
-    end
-    item.quality = 50 if item.quality > 50
-
-    item.sell_in = item.sell_in - 1
-
-    item
-  end
-end
+require "backstage_passes_item"
 
 def update_quality(items)
   items.each do |item|
@@ -44,7 +16,7 @@ def update_quality(items)
       sulfuras = SulfurasItem.new(item)
       sulfuras.update
     when "Backstage passes to a TAFKAL80ETC concert"
-      backstage_passes = BackstagePasses.new(item)
+      backstage_passes = BackstagePassesItem.new(item)
       backstage_passes.update
     end
   end
