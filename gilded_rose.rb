@@ -1,21 +1,7 @@
 require "forwardable"
 require "normal_item"
 require "aged_brie_item"
-
-class Sulfuras
-  attr_reader :item
-  extend Forwardable
-
-  def_delegator @item, :quality, :sell_in
-
-  def initialize(item)
-    @item = item
-  end
-
-  def update
-    self
-  end
-end
+require "sulfuras_item"
 
 class BackstagePasses
   attr_reader :item
@@ -55,7 +41,7 @@ def update_quality(items)
       aged_brie = AgedBrieItem.new(item)
       aged_brie.update
     when "Sulfuras, Hand of Ragnaros"
-      sulfuras = Sulfuras.new(item)
+      sulfuras = SulfurasItem.new(item)
       sulfuras.update
     when "Backstage passes to a TAFKAL80ETC concert"
       backstage_passes = BackstagePasses.new(item)
