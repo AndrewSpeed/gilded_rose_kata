@@ -1,12 +1,14 @@
 class Item
-  attr_reader :item
+  attr_reader :item, :quality, :sell_in
 
   def self.new_with_item(item)
-    new(item)
+    new(item, item.quality, item.sell_in)
   end
 
-  def initialize(item)
+  def initialize(item, quality, sell_in)
     @item = item
+    @quality = quality
+    @sell_in = sell_in
   end
 
   def quality
