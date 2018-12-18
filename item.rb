@@ -1,6 +1,10 @@
 class Item
   attr_reader :item
 
+  def self.new_with_item(item)
+    new(item)
+  end
+
   def initialize(item)
     @item = item
   end
