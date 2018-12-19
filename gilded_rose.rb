@@ -6,8 +6,8 @@ require "normal_item"
 require "sulfuras_item"
 
 def update_quality(items)
-  items.each do |item|
-    item_wrapper = klass_for(item.name).new_with_item(item)
+  items.map do |item|
+    item_wrapper = klass_for(item.name).new(item.quality, item.sell_in)
     item_wrapper.update
   end
 end
