@@ -5,6 +5,14 @@ require "backstage_passes_item"
 require "normal_item"
 require "sulfuras_item"
 
+DEFAULT_PRODUCT = Product
+PRODUCT_CLASS_MAPPING = {
+  "NORMAL ITEM" => NormalItem,
+  "Aged Brie" => AgedBrieItem,
+  "Sulfuras, Hand of Ragnaros" => SulfurasItem,
+  "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesItem
+}.freeze
+
 def update_quality(items)
   items.map do |item|
     item_wrapper = klass_for(item.name).new(item.quality, item.sell_in)
@@ -13,16 +21,7 @@ def update_quality(items)
 end
 
 def klass_for(item_name)
-  case item_name
-    when "NORMAL ITEM"
-      NormalItem
-    when "Aged Brie"
-      AgedBrieItem
-    when "Sulfuras, Hand of Ragnaros"
-      SulfurasItem
-    when "Backstage passes to a TAFKAL80ETC concert"
-      BackstagePassesItem
-  end
+  PRODUCT_CLASS_MAPPING.fetch(item_name, DEFAULT_PRODUCT)
 end
 
 # DO NOT CHANGE THINGS BELOW -----------------------------------------
