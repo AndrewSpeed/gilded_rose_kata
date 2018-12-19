@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require "aged_brie_item"
-require "backstage_passes_item"
+require "aged_brie"
+require "backstage_passes"
 require "normal_item"
-require "sulfuras_item"
+require "sulfuras"
 
 DEFAULT_PRODUCT = Product
 PRODUCT_CLASS_MAPPING = {
+  "Aged Brie" => AgedBrie,
+  "Backstage passes to a TAFKAL80ETC concert" => BackstagePasses,
   "NORMAL ITEM" => NormalItem,
-  "Aged Brie" => AgedBrieItem,
-  "Sulfuras, Hand of Ragnaros" => SulfurasItem,
-  "Backstage passes to a TAFKAL80ETC concert" => BackstagePassesItem
+  "Sulfuras, Hand of Ragnaros" => Sulfuras,
 }.freeze
 
 def update_quality(items)

@@ -2,7 +2,7 @@
 
 require "product"
 
-class BackstagePassesItem < Product
+class BackstagePasses < Product
   def update
     if sell_in > 10
       self.quality = quality + 1

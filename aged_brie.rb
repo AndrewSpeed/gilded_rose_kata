@@ -2,7 +2,7 @@
 
 require "product"
 
-class AgedBrieItem < Product
+class AgedBrie < Product
   def update
     if sell_in <= 0
       self.quality += 2

@@ -2,5 +2,5 @@
 
 require "product"
 
-class SulfurasItem < Product
+class Sulfuras < Product
 end
