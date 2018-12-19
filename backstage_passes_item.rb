@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "item"
+require "product"
 
-class BackstagePassesItem < Item
+class BackstagePassesItem < Product
   def update
     if sell_in > 10
       self.quality = quality + 1

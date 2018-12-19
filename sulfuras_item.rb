@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "item"
+require "product"
 
-class SulfurasItem < Item
+class SulfurasItem < Product
 end

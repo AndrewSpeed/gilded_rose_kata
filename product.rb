@@ -1,4 +1,6 @@
-class Item
+# frozen_string_literal: true
+
+class Product
   attr_reader :quality, :sell_in
 
   def initialize(quality, sell_in)

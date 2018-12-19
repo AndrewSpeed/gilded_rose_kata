@@ -1,6 +1,8 @@
-require "item"
+# frozen_string_literal: true
 
-class AgedBrieItem < Item
+require "product"
+
+class AgedBrieItem < Product
   def update
     if sell_in <= 0
       self.quality += 2

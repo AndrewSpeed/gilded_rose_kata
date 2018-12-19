@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "item"
+require "product"
 
-class NormalItem < Item
+class NormalItem < Product
   def update
     if self.quality == 0
       self.quality = 0
