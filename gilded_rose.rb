@@ -2,6 +2,7 @@
 
 require "aged_brie"
 require "backstage_passes"
+require "conjured_item"
 require "normal_item"
 require "sulfuras"
 
@@ -9,6 +10,7 @@ DEFAULT_PRODUCT = Product
 PRODUCT_CLASS_MAPPING = {
   "Aged Brie" => AgedBrie,
   "Backstage passes to a TAFKAL80ETC concert" => BackstagePasses,
+  "Conjured Mana Cake" => ConjuredItem,
   "NORMAL ITEM" => NormalItem,
   "Sulfuras, Hand of Ragnaros" => Sulfuras,
 }.freeze

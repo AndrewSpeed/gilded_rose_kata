@@ -185,21 +185,21 @@ RSpec.describe "#update_quality" do
     context "conjured item" do
       let(:name) { "Conjured Mana Cake" }
 
-      xit do
+      it do
         expect(item.sell_in).to eq(initial_sell_in - 1)
       end
 
       context "before the sell date" do
         let(:initial_sell_in) { 5 }
 
-        xit do
+        it do
           expect(item.quality).to eq(initial_quality - 2)
         end
 
         context "at zero quality" do
           let(:initial_quality) { 0 }
 
-          xit do
+          it do
             expect(item.quality).to eq(initial_quality)
           end
         end
@@ -208,14 +208,14 @@ RSpec.describe "#update_quality" do
       context "on sell date" do
         let(:initial_sell_in) { 0 }
 
-        xit do
+        it do
           expect(item.quality).to eq(initial_quality - 4)
         end
 
         context "at zero quality" do
           let(:initial_quality) { 0 }
 
-          xit do
+          it do
             expect(item.quality).to eq(initial_quality)
           end
         end
@@ -224,14 +224,14 @@ RSpec.describe "#update_quality" do
       context "after sell date" do
         let(:initial_sell_in) { -10 }
 
-        xit do
+        it do
           expect(item.quality).to eq(initial_quality - 4)
         end
 
         context "at zero quality" do
           let(:initial_quality) { 0 }
 
-          xit do
+          it do
             expect(item.quality).to eq(initial_quality)
           end
         end
