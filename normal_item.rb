@@ -4,12 +4,12 @@ require "item"
 
 class NormalItem < Item
   def update
-    self.quality = if quality == 0
-      0
-    elsif sell_in <= 0
-      quality - 2
+    if self.quality == 0
+      self.quality = 0
+    elsif self.sell_in <= 0
+      self.quality -= 2
     else
-      quality - 1
+      self.quality -= 1
     end
 
     self.sell_in -= 1
