@@ -4,9 +4,9 @@ require "product"
 
 class ConjuredItem < Product
   def update
-    if self.quality == 0
+    if quality == 0
       self.quality = 0
-    elsif self.sell_in <= 0
+    elsif sell_in <= 0
       self.quality -= 4
     else
       self.quality -= 2
